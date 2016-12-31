@@ -4,9 +4,8 @@ let gulp = require('gulp');
 let runSequence = require('run-sequence');
 let browserify = require('browserify');
 let source = require('vinyl-source-stream');
-
-// default
-gulp.task('default', ['build']);
+let webserver = require('gulp-webserver');
+let babelify = require("babelify");
 
 // build
 gulp.task('build', () => {
@@ -15,11 +14,28 @@ gulp.task('build', () => {
 
 // browserify
 gulp.task('browserify', () => {
-    browserify({
-        entries: ['./app/scripts/main.js'],
-        require: ['jquery', 'underscore','backbone', 'bootstrap', 'backbone.validation']
+    browserify('./js/app.js', {
+        debug:   true,
+        require: ['moment', 'pikaday', 'zeroclipboard', 'numbro']
     })
-    .bundle()
-    .pipe(source('app.js'))
-    .pipe(gulp.dest('./app/scripts/'));
+        .transform(babelify)
+        .bundle()
+        .pipe(source('bundle.js'))
+        .pipe(gulp.dest('./dist/'));
 });
+
+gulp.task('watch', () => {
+    gulp.watch('./js/**/*.js', ['build']);
+});
+
+gulp.task('server', () => {
+    gulp.src('./')
+        .pipe(webserver({
+            host: '127.0.0.1',
+            livereload: true
+        })
+    );
+});
+
+// default
+gulp.task('default', ['build', 'watch', 'server']);
