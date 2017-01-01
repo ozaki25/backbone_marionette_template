@@ -1,22 +1,30 @@
-var Backbone = require('backbone');
-var FormView = require('./FormView');
-var TableView = require('./TableView');
+import Backbone from 'backbone';
+import FormView from './FormView';
+import TableView from './TableView';
 
-module.exports = Backbone.Marionette.View.extend({
-    className: 'container',
-    template: '#users-main-view',
-    regions: {
-        formRegion: '#users-form-region',
-        tableRegion: '#users-table-region',
-    },
-    onRender: function() {
+export default class MainView extends Backbone.Marionette.View {
+    constructor(options) {
+        const defaultOptions = {
+            className: 'container',
+            template: '#users-main-view',
+            regions: {
+                formRegion: '#users-form-region',
+                tableRegion: '#users-table-region',
+            }
+        };
+        super($.extend({}, options, defaultOptions));
+    }
+
+    onRender() {
         this.renderForm();
         this.renderTable();
-    },
-    renderForm: function() {
+    }
+
+    renderForm() {
         this.getRegion('formRegion').show(new FormView({ collection: this.collection }));
-    },
-    renderTable: function() {
+    }
+
+    renderTable() {
         this.getRegion('tableRegion').show(new TableView({ collection: this.collection }));
-    },
-});
+    }
+}

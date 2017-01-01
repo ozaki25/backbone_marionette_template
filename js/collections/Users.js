@@ -1,7 +1,10 @@
-var Backbone = require('backbone');
-var User = require('../models/User');
+import Backbone from 'backbone';
+import User from '../models/User';
 
-module.exports = Backbone.Collection.extend({
-    model: User,
-    localStorage: new Backbone.LocalStorage('BackboneMarionetteTemplate.Users')
-});
+export default class Users extends Backbone.Collection {
+    constructor(models, options) {
+        const defaultOptions = { model: User };
+        super(models, $.extend({}, options, defaultOptions));
+        this.localStorage = new Backbone.LocalStorage('BackboneMarionetteTemplate.Users');
+    }
+}

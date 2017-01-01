@@ -1,16 +1,22 @@
-var Backbone = require('backbone');
+import Backbone from 'backbone';
 
-module.exports = Backbone.Marionette.View.extend({
-    tagName: 'tr',
-    template: '#users-table-row-view',
-    ui: {
-        destroyBtn: '.destroy',
-    },
-    events: {
-        'click @ui.destroyBtn': 'onClickDestroy',
-    },
-    onClickDestroy: function(e) {
+export default class TableRowView extends Backbone.Marionette.View {
+    constructor(options) {
+        const defaultOptions = {
+            tagName: 'tr',
+            template: '#users-table-row-view',
+            ui: {
+                destroyBtn: '.destroy',
+            },
+            events: {
+                'click @ui.destroyBtn': 'onClickDestroy',
+            }
+        };
+        super($.extend({}, options, defaultOptions));
+    }
+
+    onClickDestroy(e) {
         e.preventDefault();
         this.model.destroy({ wait: true });
-    },
-});
+    }
+}

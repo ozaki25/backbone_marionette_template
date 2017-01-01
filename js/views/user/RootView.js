@@ -1,23 +1,30 @@
-var Backbone = require('backbone');
-var Users = require('../../collections/Users');
-var HeaderView = require('../HeaderView');
-var MainView = require('./MainView');
+import Backbone from 'backbone';
+import Users from '../../collections/Users';
+import HeaderView from '../HeaderView';
+import MainView from './MainView';
 
-module.exports = Backbone.Marionette.View.extend({
-    template: '#root-view',
-    regions: {
-        headerRegion: '#header-region',
-        mainRegion  : '#main-region',
-    },
-    onRender: function() {
+export default class RootView extends Backbone.Marionette.View {
+    constructor(options) {
+        const defaultOptions = {
+            template: '#root-view',
+            regions: {
+                headerRegion: '#header-region',
+                mainRegion  : '#main-region',
+            }
+        };
+        super($.extend({}, options, defaultOptions));
+    }
+
+    onRender() {
         this.renderHeader();
         this.renderMain();
-    },
-    renderHeader: function() {
-        this.getRegion('headerRegion').show(new HeaderView());
-    },
-    renderMain: function() {
-        this.getRegion('mainRegion').show(new MainView());
-    },
-});
+    }
 
+    renderHeader() {
+        this.getRegion('headerRegion').show(new HeaderView());
+    }
+
+    renderMain() {
+        this.getRegion('mainRegion').show(new MainView());
+    }
+}

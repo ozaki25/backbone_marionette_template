@@ -1,7 +1,12 @@
-var Backbone = require('backbone');
-var TableRowView = require('./TableRowView');
+import Backbone from 'backbone';
+import TableRowView from './TableRowView';
 
-module.exports = Backbone.Marionette.CollectionView.extend({
-    tagName: 'tbody',
-    childView: TableRowView,
-});
+export default class TableBodyView extends Backbone.Marionette.CollectionView {
+    constructor(options) {
+        const defaultOptions = {
+            tagName: 'tbody',
+            childView: TableRowView
+        };
+        super($.extend({}, options, defaultOptions));
+    }
+}

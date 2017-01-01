@@ -1,20 +1,27 @@
-var Backbone = require('backbone');
-var TableBodyView = require('./TableBodyView');
+import Backbone from 'backbone';
+import TableBodyView from './TableBodyView';
 
-module.exports = Backbone.Marionette.View.extend({
-    tagName: 'table',
-    className: 'table table-condensed',
-    template: '#users-table-view',
-    regions: {
-        tableBodyRegion: {
-            el: 'tbody',
-            replaceElement: true,
-        }
-    },
-    onRender: function() {
+export default class TableView extends Backbone.Marionette.View {
+    constructor(options) {
+        const defaultOptions = {
+            tagName: 'table',
+            className: 'table table-condensed',
+            template: '#users-table-view',
+            regions: {
+                tableBodyRegion: {
+                    el: 'tbody',
+                    replaceElement: true,
+                }
+            }
+        };
+        super($.extend({}, options, defaultOptions));
+    }
+
+    onRender() {
         this.renderTableBody();
-    },
-    renderTableBody: function() {
+    }
+
+    renderTableBody() {
         this.getRegion('tableBodyRegion').show(new TableBodyView({ collection: this.collection }));
-    },
-});
+    }
+}

@@ -1,38 +1,38 @@
-require('jquery');
-require('bootstrap');
-require('backbone.marionette');
-require('backbone.validation');
-require('backbone.localstorage');
-var Backbone = require('backbone');
-var HelloRootView = require('./views/hello/RootView');
-var UserRootView = require('./views/user/RootView');
-var UsersRootView = require('./views/users/RootView');
+import 'jquery';
+import 'bootstrap';
+import 'backbone.marionette';
+import 'backbone.validation';
+import 'backbone.localstorage';
+import Backbone from 'backbone';
+import HelloRootView from './views/hello/RootView';
+import UserRootView from'./views/user/RootView';
+import UsersRootView from'./views/users/RootView';
 
-var controller = {
-    hello: function() {
+const controller = {
+    hello: () => {
         app.showView(new HelloRootView());
     },
-    user: function() {
+    user: () => {
         app.showView(new UserRootView());
     },
-    users: function() {
+    users: () => {
         app.showView(new UsersRootView());
     }
 }
 
-var appRouter = Backbone.Marionette.AppRouter.extend({
+const appRouter = Backbone.Marionette.AppRouter.extend({
     appRoutes: {
         ""     : "hello",
         "hello": "hello",
         "user" : "user",
         "users": "users",
     },
-    controller: controller
+    controller: controller,
 });
 
-var app = new Backbone.Marionette.Application({
+const app = new Backbone.Marionette.Application({
     region: '#root-region',
-    onStart: function() {
+    onStart: () => {
         new appRouter();
         Backbone.history.start();
     }

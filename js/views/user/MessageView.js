@@ -1,7 +1,12 @@
-var Backbone = require('backbone');
+import Backbone from 'backbone';
 
-module.exports = Backbone.Marionette.View.extend({
-    tagName: 'p',
-    className: 'lead',
-    template: '#user-message-view',
-});
+export default class MessageView extends Backbone.Marionette.View {
+    constructor(options) {
+        const defaultOptions = {
+            tagName: 'p',
+            className: 'lead',
+            template: '#user-message-view',
+        };
+        super($.extend({}, options, defaultOptions));
+    }
+}

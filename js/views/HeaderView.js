@@ -1,6 +1,11 @@
-var Backbone = require('backbone');
+import Backbone from 'backbone';
 
-module.exports = Backbone.Marionette.View.extend({
-    template: '#header-view',
-});
+export default class HeaderView extends Backbone.Marionette.View {
+    constructor(options) {
+        const defaultOptions = {
+            template: '#header-view'
+        };
+        super($.extend({}, options, defaultOptions));
+    }
+}
 
