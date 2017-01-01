@@ -1,6 +1,7 @@
 var Backbone = require('backbone');
+var Users = require('../../collections/Users');
 var HeaderView = require('../HeaderView');
-var TestView = require('./TestView');
+var MainView = require('./MainView');
 
 module.exports = Backbone.Marionette.View.extend({
     template: '#root-view',
@@ -16,6 +17,7 @@ module.exports = Backbone.Marionette.View.extend({
         this.getRegion('headerRegion').show(new HeaderView());
     },
     renderMain: function() {
-        this.getRegion('mainRegion').show(new TestView());
+        this.getRegion('mainRegion').show(new MainView());
     },
 });
+

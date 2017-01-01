@@ -27,7 +27,8 @@
           </div>
           <div class="collapse navbar-collapse" id="navbar-links">
             <ul class="nav navbar-nav">
-              <li><a href="#test">Test</a></li>
+              <li><a href="#hello">Hello</a></li>
+              <li><a href="#user">User</a></li>
               <li><a href="#users">Users</a></li>
             </ul>
           </div>
@@ -35,9 +36,27 @@
       </nav>
     </script>
 
-    <script id="test-view" type="text/template">
+
+    <script id="hello-view" type="text/template">
       <h1>Backbone Moarionette Template</h1>
     </script>
+
+
+    <script id="user-main-view" type="text/template">
+      <form class="form-inline">
+        <div class="form-group">
+          <label class="label-control">Name</label>
+          <input type="text" class="form-control name" />
+        </div>
+        <button class="btn btn-default" id="hello">Hello</button>
+      </form>
+      <p id="message"></p>
+    </script>
+
+    <script id="user-message-view" type="text/template">
+      Hello <strong><%- name %></strong> !
+    </script>
+
 
     <script id="users-main-view" type="text/template">
       <div id="users-form-region"></div>
