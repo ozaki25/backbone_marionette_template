@@ -2,15 +2,17 @@ import Backbone from 'backbone';
 
 export default class TableRowView extends Backbone.Marionette.View {
     constructor(options) {
-        super(options);
-        this.tagName = 'tr';
-        this.template = '#users-table-row-view';
-        this.ui = {
-            destroyBtn: '.destroy',
+        const defaultOptions = {
+            tagName: 'tr',
+            template: '#users-table-row-view',
+            ui: {
+                destroyBtn: '.destroy',
+            },
+            events: {
+                'click @ui.destroyBtn': 'onClickDestroy',
+            }
         };
-        this.events = {
-            'click @ui.destroyBtn': 'onClickDestroy',
-        };
+        super($.extend({}, options, defaultOptions));
     }
 
     onClickDestroy(e) {

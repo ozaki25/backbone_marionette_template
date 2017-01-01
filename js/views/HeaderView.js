@@ -2,8 +2,10 @@ import Backbone from 'backbone';
 
 export default class HeaderView extends Backbone.Marionette.View {
     constructor(options) {
-        super(options);
-        this.template = '#header-view';
+        const defaultOptions = {
+            template: '#header-view'
+        };
+        super($.extend({}, options, defaultOptions));
     }
 }
 

@@ -4,13 +4,15 @@ import TableView from './TableView';
 
 export default class MainView extends Backbone.Marionette.View {
     constructor(options) {
-        super(options);
-        this.className = 'container';
-        this.template = '#users-main-view';
-        this.addRegions({
-            formRegion: '#users-form-region',
-            tableRegion: '#users-table-region',
-        });
+        const defaultOptions = {
+            className: 'container',
+            template: '#users-main-view',
+            regions: {
+                formRegion: '#users-form-region',
+                tableRegion: '#users-table-region',
+            }
+        };
+        super($.extend({}, options, defaultOptions));
     }
 
     onRender() {
