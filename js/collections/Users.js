@@ -3,8 +3,8 @@ import User from '../models/User';
 
 export default class Users extends Backbone.Collection {
     constructor(models, options) {
-        const defaultOptions = { model: User };
-        super(models, $.extend({}, options, defaultOptions));
+        super(models, options);
+        this.model = User;
         this.localStorage = new Backbone.LocalStorage('BackboneMarionetteTemplate.Users');
     }
 }

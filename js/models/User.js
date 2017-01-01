@@ -3,7 +3,6 @@ import Backbone from 'backbone';
 export default class User extends Backbone.Model {
     constructor(attr, options) {
         super(attr, options);
-
         this.validation = {
             name: {
                 required: true,

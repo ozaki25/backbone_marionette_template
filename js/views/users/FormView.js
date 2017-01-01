@@ -3,20 +3,18 @@ import User from '../../models/User';
 
 export default class FromView extends Backbone.Marionette.View {
     constructor(options) {
-        const defaultOptions = {
-            className: 'panel panel-default',
-            template: '#users-form-view',
-            ui: {
-                inputName: 'input.name',
-                inputAge : 'input.age',
-                inputs   : 'input',
-                createBtn: '.create'
-            },
-            events: {
-                'click @ui.createBtn': 'onClickCreate'
-            }
+        super(options);
+        this.className = 'panel panel-default';
+        this.template = '#users-form-view';
+        this.ui =  {
+            inputName: 'input.name',
+            inputAge : 'input.age',
+            inputs   : 'input',
+            createBtn: '.create',
         };
-        super($.extend({}, options, defaultOptions));
+        this.events = {
+            'click @ui.createBtn': 'onClickCreate',
+        };
     }
 
     onClickCreate(e) {
