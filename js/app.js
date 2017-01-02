@@ -8,27 +8,23 @@ import HelloRootView from './views/hello/RootView';
 import UserRootView from'./views/user/RootView';
 import UsersRootView from'./views/users/RootView';
 
-const controller = {
-    hello: () => {
-        app.showView(new HelloRootView());
-    },
-    user: () => {
-        app.showView(new UserRootView());
-    },
-    users: () => {
-        app.showView(new UsersRootView());
+class appRouter extends Backbone.Marionette.AppRouter {
+    constructor() {
+        super({
+            appRoutes: {
+                ""     : "hello",
+                "hello": "hello",
+                "user" : "user",
+                "users": "users",
+            },
+            controller: {
+                hello: () => { app.showView(new HelloRootView()); },
+                user : () => { app.showView(new UserRootView()); },
+                users: () => { app.showView(new UsersRootView()); },
+            },
+        });
     }
 }
-
-const appRouter = Backbone.Marionette.AppRouter.extend({
-    appRoutes: {
-        ""     : "hello",
-        "hello": "hello",
-        "user" : "user",
-        "users": "users",
-    },
-    controller: controller,
-});
 
 const app = new Backbone.Marionette.Application({
     region: '#root-region',
