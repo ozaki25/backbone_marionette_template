@@ -13,7 +13,7 @@ export default class RootView extends Marionette.LayoutView<Backbone.Model> {
         };
     }
 
-    constructor(options) {
+    constructor(options = {}) {
         super(options);
     }
 
@@ -23,11 +23,11 @@ export default class RootView extends Marionette.LayoutView<Backbone.Model> {
     }
 
     renderHeader() {
-        this.getRegion('headerRegion').show(new HeaderView({ model: new Backbone.Model }));
+        this.getRegion('headerRegion').show(new HeaderView());
     }
 
     renderMain() {
-        this.getRegion('mainRegion').show(new HelloView({ model: new Backbone.Model }));
+        this.getRegion('mainRegion').show(new HelloView());
     }
 
 }

@@ -15,7 +15,7 @@ export default class User extends Backbone.Model {
         }]
     };
 
-    constructor(attr, options) {
+    constructor(attr = {}, options = {}) {
         super(attr, options);
     }
 }

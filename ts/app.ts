@@ -19,13 +19,13 @@ class AppRouter extends Marionette.AppRouter {
             },
             controller: {
                 hello: () => {
-                    app.getRegion('rootRegion').show(new HelloRootView({ model: new Backbone.Model }));
+                    app.getRegion('rootRegion').show(new HelloRootView());
                 },
                 user : () => {
-                    app.getRegion('rootRegion').show(new UserRootView({ model: new Backbone.Model }));
+                    app.getRegion('rootRegion').show(new UserRootView());
                 },
                 users: () => {
-                    // app.getRegion('rootRegion').show(new UsersRootView({ model: new Backbone.Model }));
+                    // app.getRegion('rootRegion').show(new UsersRootView());
                 },
             },
         };

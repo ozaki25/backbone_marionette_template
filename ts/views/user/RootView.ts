@@ -6,7 +6,7 @@ import MainView from './MainView';
 export default class RootView extends Marionette.LayoutView<Backbone.Model> {
     template = '#root-view';
 
-    constructor(options) {
+    constructor(options = {}) {
         super(options);
     }
 
@@ -14,7 +14,7 @@ export default class RootView extends Marionette.LayoutView<Backbone.Model> {
         return {
             headerRegion: '#header-region',
             mainRegion  : '#main-region',
-        }
+        };
     }
 
     onRender() {
@@ -23,10 +23,10 @@ export default class RootView extends Marionette.LayoutView<Backbone.Model> {
     }
 
     renderHeader() {
-        this.getRegion('headerRegion').show(new HeaderView({ model: Backbone.Model }));
+        this.getRegion('headerRegion').show(new HeaderView());
     }
 
     renderMain() {
-        this.getRegion('mainRegion').show(new MainView({ model: Backbone.Model }));
+        this.getRegion('mainRegion').show(new MainView());
     }
 }
