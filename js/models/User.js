@@ -16,6 +16,6 @@ export default class User extends Backbone.Model {
                 range: [0, 100],
                 msg: '0〜100を入力して下さい。'
             }]
-        }
+        };
     }
 }

@@ -12,10 +12,10 @@ class appRouter extends Backbone.Marionette.AppRouter {
     constructor() {
         super({
             appRoutes: {
-                ""     : "hello",
-                "hello": "hello",
-                "user" : "user",
-                "users": "users",
+                ''     : 'hello',
+                'hello': 'hello',
+                'user' : 'user',
+                'users': 'users',
             },
             controller: {
                 hello: () => { app.showView(new HelloRootView()); },

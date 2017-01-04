@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import Backbone from 'backbone';
 import HeaderView from '../HeaderView';
 import HelloView from './HelloView';
@@ -11,7 +12,7 @@ export default class RootView extends Backbone.Marionette.View {
                 mainRegion  : '#main-region'
             },
         };
-        super($.extend({}, options, defaultOptions));
+        super(_.defaults({}, options, defaultOptions));
     }
 
     onRender() {

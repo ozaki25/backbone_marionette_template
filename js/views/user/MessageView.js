@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import Backbone from 'backbone';
 
 export default class MessageView extends Backbone.Marionette.View {
@@ -7,6 +8,6 @@ export default class MessageView extends Backbone.Marionette.View {
             className: 'lead',
             template: '#user-message-view',
         };
-        super($.extend({}, options, defaultOptions));
+        super(_.defaults({}, options, defaultOptions));
     }
 }

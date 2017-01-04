@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import Backbone from 'backbone';
 import User from '../../models/User';
 import MessageView from './MessageView';
@@ -21,7 +22,7 @@ export default class MainView extends Backbone.Marionette.View {
                 'click @ui.helloBtn': 'onClickHello'
             },
         };
-        super($.extend({}, options, defaultOptions));
+        super(_.defaults({}, options, defaultOptions));
     }
 
     onClickHello(e) {
