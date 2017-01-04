@@ -1,20 +1,20 @@
 import * as Backbone from 'backbone';
 import * as Marionette from 'backbone.marionette';
-
 import HeaderView from '../HeaderView';
-import HelloView from './HelloView';
+import MainView from './MainView';
 
 export default class RootView extends Marionette.LayoutView<Backbone.Model> {
     template = '#root-view';
-    regions() {
-        return {
-            headerRegion: '#header-region',
-            mainRegion  : '#main-region'
-        };
-    }
 
     constructor(options) {
         super(options);
+    }
+
+    regions() {
+        return {
+            headerRegion: '#header-region',
+            mainRegion  : '#main-region',
+        }
     }
 
     onRender() {
@@ -23,11 +23,10 @@ export default class RootView extends Marionette.LayoutView<Backbone.Model> {
     }
 
     renderHeader() {
-        this.getRegion('headerRegion').show(new HeaderView({ model: new Backbone.Model }));
+        this.getRegion('headerRegion').show(new HeaderView({ model: Backbone.Model }));
     }
 
     renderMain() {
-        this.getRegion('mainRegion').show(new HelloView({ model: new Backbone.Model }));
+        this.getRegion('mainRegion').show(new MainView({ model: Backbone.Model }));
     }
-
 }

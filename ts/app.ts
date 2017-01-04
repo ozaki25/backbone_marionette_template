@@ -4,9 +4,9 @@ import * as Backbone from 'backbone';
 import * as Marionette from 'backbone.marionette';
 import 'backbone.validation';
 import 'backbone.localstorage';
-import * as HelloRootView from './views/hello/RootView';
-// import UserRootView from'./views/user/RootView';
-// import UsersRootView from'./views/users/RootView';
+import HelloRootView from './views/hello/RootView';
+import UserRootView from './views/user/RootView';
+// import UsersRootView from './views/users/RootView';
 
 class AppRouter extends Marionette.AppRouter {
     constructor() {
@@ -19,16 +19,13 @@ class AppRouter extends Marionette.AppRouter {
             },
             controller: {
                 hello: () => {
-                    alert('hello');
-                    // app.showView(new HelloRootView());
+                    app.getRegion('rootRegion').show(new HelloRootView({ model: new Backbone.Model }));
                 },
                 user : () => {
-                    alert('user');
-                    // app.showView(new UserRootView());
+                    app.getRegion('rootRegion').show(new UserRootView({ model: new Backbone.Model }));
                 },
                 users: () => {
-                    alert('users');
-                    // app.showView(new UsersRootView());
+                    // app.getRegion('rootRegion').show(new UsersRootView({ model: new Backbone.Model }));
                 },
             },
         };
@@ -37,7 +34,9 @@ class AppRouter extends Marionette.AppRouter {
 }
 
 const app: Marionette.Application = new Marionette.Application({
-    region: '#root-region',
+    regions: {
+        rootRegion: '#root-region'
+    },
     onStart: () => {
         new AppRouter();
         Backbone.history.start();
