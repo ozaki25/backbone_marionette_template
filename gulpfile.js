@@ -7,24 +7,30 @@ let source = require('vinyl-source-stream');
 let webserver = require('gulp-webserver');
 let babelify = require("babelify");
 let eslint = require('gulp-eslint');
+let ts = require("gulp-typescript");
+let tsify = require("tsify");
+let tslint = require("gulp-tslint");
 
 gulp.task('build', () => {
     runSequence(['browserify']);
 });
 
 gulp.task('browserify', () => {
-    browserify('./js/app.js', {
+    browserify({
+        basedir: '.',
         debug:   true,
-        require: ['moment', 'pikaday', 'zeroclipboard', 'numbro']
+        entries: ['ts/app.ts'],
+        cache: {},
+        packageCache: {}
     })
-        .transform(babelify)
+        .plugin(tsify)
         .bundle()
         .pipe(source('bundle.js'))
-        .pipe(gulp.dest('./dist/'));
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('watch', () => {
-    gulp.watch('./js/**/*.js', ['build', 'lint']);
+    gulp.watch('./ts/**/*.ts', ['build', 'tslint']);
 });
 
 gulp.task('server', () => {
@@ -36,12 +42,19 @@ gulp.task('server', () => {
     );
 });
 
-gulp.task('lint', () => {
+gulp.task('eslint', () => {
     gulp.src('./js/**/*.js')
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
 });
 
+gulp.task("tslint", () => {
+    gulp.src('./ts/**/*.ts')
+        .pipe(tslint({
+            formatter: "verbose"
+        }))
+        .pipe(tslint.report())
+});
 
-gulp.task('default', ['build', 'watch', 'server', 'lint']);
+gulp.task('default', ['build', 'watch', 'server', 'tslint']);
