@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import Backbone from 'backbone';
 import TableBodyView from './TableBodyView';
 
@@ -14,7 +15,7 @@ export default class TableView extends Backbone.Marionette.View {
                 }
             }
         };
-        super($.extend({}, options, defaultOptions));
+        super(_.defaults({}, options, defaultOptions));
     }
 
     onRender() {

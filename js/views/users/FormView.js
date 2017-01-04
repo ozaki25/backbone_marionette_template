@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import Backbone from 'backbone';
 import User from '../../models/User';
 
@@ -16,7 +17,7 @@ export default class FromView extends Backbone.Marionette.View {
                 'click @ui.createBtn': 'onClickCreate'
             }
         };
-        super($.extend({}, options, defaultOptions));
+        super(_.defaults({}, options, defaultOptions));
     }
 
     onClickCreate(e) {

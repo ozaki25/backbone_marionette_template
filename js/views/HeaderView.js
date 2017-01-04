@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import Backbone from 'backbone';
 
 export default class HeaderView extends Backbone.Marionette.View {
@@ -5,7 +6,7 @@ export default class HeaderView extends Backbone.Marionette.View {
         const defaultOptions = {
             template: '#header-view'
         };
-        super($.extend({}, options, defaultOptions));
+        super(_.defaults({}, options, defaultOptions));
     }
 }
 

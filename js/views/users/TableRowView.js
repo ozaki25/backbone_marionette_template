@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import Backbone from 'backbone';
 
 export default class TableRowView extends Backbone.Marionette.View {
@@ -12,7 +13,7 @@ export default class TableRowView extends Backbone.Marionette.View {
                 'click @ui.destroyBtn': 'onClickDestroy',
             }
         };
-        super($.extend({}, options, defaultOptions));
+        super(_.defaults({}, options, defaultOptions));
     }
 
     onClickDestroy(e) {

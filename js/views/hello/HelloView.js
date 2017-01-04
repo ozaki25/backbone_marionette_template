@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import Backbone from 'backbone';
 
 export default class HelloView extends Backbone.Marionette.View {
@@ -6,7 +7,7 @@ export default class HelloView extends Backbone.Marionette.View {
             className: 'container',
             template: '#hello-view'
         };
-        super($.extend({}, options, defaultOptions));
+        super(_.defaults({}, options, defaultOptions));
     }
 }
 

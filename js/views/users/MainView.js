@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import Backbone from 'backbone';
 import FormView from './FormView';
 import TableView from './TableView';
@@ -12,7 +13,7 @@ export default class MainView extends Backbone.Marionette.View {
                 tableRegion: '#users-table-region',
             }
         };
-        super($.extend({}, options, defaultOptions));
+        super(_.defaults({}, options, defaultOptions));
     }
 
     onRender() {
