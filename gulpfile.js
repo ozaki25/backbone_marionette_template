@@ -6,13 +6,12 @@ let browserify = require('browserify');
 let source = require('vinyl-source-stream');
 let webserver = require('gulp-webserver');
 let babelify = require("babelify");
+let eslint = require('gulp-eslint');
 
-// build
 gulp.task('build', () => {
     runSequence(['browserify']);
 });
 
-// browserify
 gulp.task('browserify', () => {
     browserify('./js/app.js', {
         debug:   true,
@@ -25,7 +24,7 @@ gulp.task('browserify', () => {
 });
 
 gulp.task('watch', () => {
-    gulp.watch('./js/**/*.js', ['build']);
+    gulp.watch('./js/**/*.js', ['build', 'lint']);
 });
 
 gulp.task('server', () => {
@@ -37,5 +36,12 @@ gulp.task('server', () => {
     );
 });
 
-// default
-gulp.task('default', ['build', 'watch', 'server']);
+gulp.task('lint', () => {
+    gulp.src('./js/**/*.js')
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
+});
+
+
+gulp.task('default', ['build', 'watch', 'server', 'lint']);
