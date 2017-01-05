@@ -5,16 +5,16 @@ import HelloView from './HelloView';
 
 export default class RootView extends Backbone.Marionette.View {
     constructor(options) {
-        const defaultOptions = {
-            template: '#root-view',
-            regions: {
-                headerRegion: '#header-region',
-                mainRegion  : '#main-region'
-            },
-        };
-        super(_.defaults({}, options, defaultOptions));
+        super(
+            _.defaults({}, options, {
+                template: '#root-view',
+                regions: {
+                    headerRegion: '#header-region',
+                    mainRegion  : '#main-region'
+                },
+            })
+        );
     }
-
     onRender() {
         this.renderHeader();
         this.renderMain();
