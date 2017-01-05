@@ -1,5 +1,4 @@
 var Backbone = require('backbone');
-var Users = require('../../collections/Users');
 var HeaderView = require('../HeaderView');
 var MainView = require('./MainView');
 

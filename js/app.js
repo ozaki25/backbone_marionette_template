@@ -8,26 +8,24 @@ var HelloRootView = require('./views/hello/RootView');
 var UserRootView = require('./views/user/RootView');
 var UsersRootView = require('./views/users/RootView');
 
-var controller = {
-    hello: function() {
-        app.showView(new HelloRootView());
-    },
-    user: function() {
-        app.showView(new UserRootView());
-    },
-    users: function() {
-        app.showView(new UsersRootView());
-    }
-}
-
 var appRouter = Backbone.Marionette.AppRouter.extend({
     appRoutes: {
-        ""     : "hello",
-        "hello": "hello",
-        "user" : "user",
-        "users": "users",
+        ''     : 'hello',
+        'hello': 'hello',
+        'user' : 'user',
+        'users': 'users',
     },
-    controller: controller
+    controller: {
+        hello: function() {
+            app.showView(new HelloRootView());
+        },
+        user: function() {
+            app.showView(new UserRootView());
+        },
+        users: function() {
+            app.showView(new UsersRootView());
+        }
+    }
 });
 
 var app = new Backbone.Marionette.Application({
