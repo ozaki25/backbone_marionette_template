@@ -1,7 +1,8 @@
 import * as Backbone from 'backbone';
 import * as Marionette from 'backbone.marionette';
+import Users from '../../collections/Users';
 import HeaderView from '../HeaderView';
-import HelloView from './HelloView';
+import MainView from './MainView';
 
 export default class RootView extends Marionette.LayoutView<Backbone.Model> {
     template = '#root-view';
@@ -13,7 +14,7 @@ export default class RootView extends Marionette.LayoutView<Backbone.Model> {
     regions() {
         return {
             headerRegion: '#header-region',
-            mainRegion  : '#main-region'
+            mainRegion  : '#main-region',
         };
     }
 
@@ -27,7 +28,9 @@ export default class RootView extends Marionette.LayoutView<Backbone.Model> {
     }
 
     renderMain() {
-        this.getRegion('mainRegion').show(new HelloView());
+        let users = new Users();
+        users.fetch().done(() => {
+            this.getRegion('mainRegion').show(new MainView({ collection: users }));
+        });
     }
-
 }
