@@ -4,20 +4,21 @@ import User from '../../models/User';
 
 export default class FromView extends Backbone.Marionette.View {
     constructor(options) {
-        const defaultOptions = {
-            className: 'panel panel-default',
-            template: '#users-form-view',
-            ui: {
-                inputName: 'input.name',
-                inputAge : 'input.age',
-                inputs   : 'input',
-                createBtn: '.create'
-            },
-            events: {
-                'click @ui.createBtn': 'onClickCreate'
-            }
-        };
-        super(_.defaults({}, options, defaultOptions));
+        super(
+            _.defaults({}, options, {
+                className: 'panel panel-default',
+                template: '#users-form-view',
+                ui: {
+                    inputName: 'input.name',
+                    inputAge : 'input.age',
+                    inputs   : 'input',
+                    createBtn: '.create'
+                },
+                events: {
+                    'click @ui.createBtn': 'onClickCreate'
+                }
+            })
+        );
     }
 
     onClickCreate(e) {
@@ -38,10 +39,10 @@ export default class FromView extends Backbone.Marionette.View {
     bindBackboneValidation() {
         Backbone.Validation.bind(this, {
             valid: (view, attr) => {
-                view.$('[name=' + attr + ']').closest('.form-group').removeClass('has-error').find('.help-inline').empty();
+                view.$(`[name=${attr}]`).closest('.form-group').removeClass('has-error').find('.help-inline').empty();
             },
             invalid: (view, attr, error) => {
-                view.$('[name=' + attr + ']').closest('.form-group').addClass('has-error').find('.help-inline').text(error);
+                view.$(`[name=${attr}]`).closest('.form-group').addClass('has-error').find('.help-inline').text(error);
             }
         });
     }

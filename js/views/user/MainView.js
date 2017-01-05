@@ -5,24 +5,25 @@ import MessageView from './MessageView';
 
 export default class MainView extends Backbone.Marionette.View {
     constructor(options) {
-        const defaultOptions = {
-            className: 'container',
-            template: '#user-main-view',
-            regions: {
-                messageRegion: {
-                    el: '#message',
-                    replaceElement: true,
+        super(
+            _.defaults({}, options, {
+                className: 'container',
+                template: '#user-main-view',
+                regions: {
+                    messageRegion: {
+                        el: '#message',
+                        replaceElement: true,
+                    }
+                },
+                ui: {
+                    inputName: '.name',
+                    helloBtn : '#hello',
+                },
+                events: {
+                    'click @ui.helloBtn': 'onClickHello'
                 }
-            },
-            ui: {
-                inputName: '.name',
-                helloBtn : '#hello',
-            },
-            events: {
-                'click @ui.helloBtn': 'onClickHello'
-            },
-        };
-        super(_.defaults({}, options, defaultOptions));
+            })
+        );
     }
 
     onClickHello(e) {
