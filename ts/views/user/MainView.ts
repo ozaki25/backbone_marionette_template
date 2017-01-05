@@ -27,6 +27,7 @@ export default class MainView extends Marionette.LayoutView<Backbone.Model> {
 
     events() {
         return {
+            // eventsでuiが使えない
             // 'click @ui.helloBtn': 'onClickHello'
             'click #hello': 'onClickHello'
         };

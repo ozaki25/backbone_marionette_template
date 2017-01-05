@@ -23,6 +23,7 @@ export default class FormView extends Marionette.ItemView<Backbone.Model> {
 
     events() {
         return {
+            // eventsでuiが使えない
             // 'click @ui.createBtn': 'onClickCreate',
             'click .create': 'onClickCreate'
         };
@@ -46,10 +47,10 @@ export default class FormView extends Marionette.ItemView<Backbone.Model> {
     bindBackboneValidation() {
         Validation.bind(this, {
             valid: (view, attr) => {
-                view.$('[name=' + attr + ']').closest('.form-group').removeClass('has-error').find('.help-inline').empty();
+                view.$(`[name=${attr}]`).closest('.form-group').removeClass('has-error').find('.help-inline').empty();
             },
             invalid: (view, attr, error) => {
-                view.$('[name=' + attr + ']').closest('.form-group').addClass('has-error').find('.help-inline').text(error);
+                view.$(`[name=${attr}]`).closest('.form-group').addClass('has-error').find('.help-inline').text(error);
             }
         });
     }

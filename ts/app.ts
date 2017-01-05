@@ -33,7 +33,7 @@ class AppRouter extends Marionette.AppRouter {
     }
 }
 
-const app: Marionette.Application = new Marionette.Application({
+const app = new Marionette.Application({
     regions: {
         rootRegion: '#root-region'
     },

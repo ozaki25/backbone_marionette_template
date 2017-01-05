@@ -18,6 +18,7 @@ export default class TableRowView extends Marionette.ItemView<Backbone.Model> {
 
     events() {
         return {
+            // eventsでuiが使えない
             // 'click @ui.destroyBtn': 'onClickDestroy'
             'click .destroy': 'onClickDestroy'
         };
