@@ -29,7 +29,7 @@ export default class FormView extends Marionette.ItemView<Backbone.Model> {
         };
     }
 
-    onClickCreate(e) {
+    onClickCreate(e: any) {
         e.preventDefault();
         this.model = new User();
         this.bindBackboneValidation();
@@ -45,6 +45,7 @@ export default class FormView extends Marionette.ItemView<Backbone.Model> {
     }
 
     bindBackboneValidation() {
+        // backbone.validationの型定義ファイルがない
         Validation.bind(this, {
             valid: (view, attr) => {
                 view.$(`[name=${attr}]`).closest('.form-group').removeClass('has-error').find('.help-inline').empty();
