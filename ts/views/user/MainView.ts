@@ -33,7 +33,7 @@ export default class MainView extends Marionette.LayoutView<Backbone.Model> {
         };
     }
 
-    onClickHello(e) {
+    onClickHello(e: any) {
         e.preventDefault();
         const name = (<any>this.ui.inputName).val().trim();
         if(name) {
@@ -42,7 +42,7 @@ export default class MainView extends Marionette.LayoutView<Backbone.Model> {
         }
     }
 
-    renderMessage(name) {
+    renderMessage(name: string) {
         const user = new User({ name: name });
         this.getRegion('messageRegion').show(new MessageView({ model: user }));
     }

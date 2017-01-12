@@ -24,7 +24,7 @@ export default class TableRowView extends Marionette.ItemView<Backbone.Model> {
         };
     }
 
-    onClickDestroy(e) {
+    onClickDestroy(e: any) {
         e.preventDefault();
         this.model.destroy({ wait: true });
     }

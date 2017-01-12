@@ -5,6 +5,7 @@
   "main": "gulpfile.js",
   "devDependencies": {
     "@types/backbone": "^1.3.33",
+    "@types/backbone.localstorage": "^1.0.29",
     "@types/backbone.marionette": "0.0.20",
     "@types/bootstrap": "^3.3.32",
     "@types/jquery": "^2.0.37",

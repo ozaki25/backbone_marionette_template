@@ -1,12 +1,12 @@
 import * as Backbone from 'backbone';
-import * as LocalStorage from 'backbone.localstorage';
+import 'backbone.localstorage';
 import User from '../models/User';
 
 export default class Users extends Backbone.Collection<User> {
     model = User;
-    localStorage = new LocalStorage('BackboneMarionetteTemplate.Users');
+    localStorage: Store = new Backbone.LocalStorage('BackboneMarionetteTemplate.Users');
 
-    constructor(models = [], options = {}) {
+    constructor(models: User[] = [], options = {}) {
         super(models, options);
     }
 }
