@@ -36,20 +36,23 @@ export default class MainView extends Marionette.LayoutView<Backbone.Model> {
     onClickHello(e: any) {
         e.preventDefault();
 
-        // ui()で定義しているためthis.ui.xxxとするとtypescriptのコンパイルエラーになる
-        // 利用者はui()で定義するがMarionetteが内部でthis.uiに詰め替えているためこの問題が発生する
+        // uiはclass内でメソッドで(ui()で)定義しているためthis.ui.xxxとするとtypescriptのコンパイルエラーになる
+        // 利用者はui()で定義するがMarionetteが内部でthis.uiに値を詰めている
+        // このためclass内だけをみるとui()と定義しているのにui.xxxと呼び出しているように見えるためui().xxxが正しいと判断されエラーとなる
 
         // 対応案1
         // this.uiを別の変数に詰め直す
-        // その際使用するプロパティをデフォルト値をセットしておかないとエラーになる
-        // let uiElement = _.defaults({}, this.ui, { inputName: <any>'' });
+        // let uiElement: any = this.ui;
         // const name = uiElement.inputName.val().trim();
 
         // 対応案2
         // this.ui.[xxx]の形式で呼び出す
         // この形式だとコンパイルをすり抜けることができる
+        // ただしxx[xx]の形式を使っているとnoImplicitAnyをtrueにしている場合suppressImplicitAnyIndexErrorsもtrueにしないとエラーが出る
         const name = this.ui['inputName'].val().trim();
+
         if(name) {
+            // uiElement.inputName.val('');
             this.ui['inputName'].val('');
             this.renderMessage(name);
         }
