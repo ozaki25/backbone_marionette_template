@@ -6,26 +6,28 @@ import User from '../../models/User';
 
 export default class FormView extends Marionette.ItemView<Backbone.Model> {
     template = '#users-form-view';
-    ui = {
-        inputName: 'input.name',
-        inputAge : 'input.age',
-        inputs   : 'input',
-        createBtn: '.create'
-    };
 
     constructor(options = {}) {
         super(
             _.defaults(options, {
-                className: 'panel panel-default'
+                className: 'panel panel-default',
+                ui: {},
             })
        );
     }
 
+    ui() {
+        return {
+            inputName: 'input.name',
+            inputAge : 'input.age',
+            inputs   : 'input',
+            createBtn: '.create'
+        };
+    }
+
     events() {
         return {
-            // eventsでuiが使えない
-            // 'click @ui.createBtn': 'onClickCreate',
-            'click .create': 'onClickCreate'
+            'click @ui.createBtn': 'onClickCreate',
         };
     }
 
@@ -34,13 +36,27 @@ export default class FormView extends Marionette.ItemView<Backbone.Model> {
         this.model = new User();
         this.bindBackboneValidation();
 
-        const name = (<any>this.ui.inputName).val().trim();
-        const age = (<any>this.ui.inputAge).val().trim();
+        // ui()で定義しているためthis.ui.xxxとするとtypescriptのコンパイルエラーになる
+        // 利用者はui()で定義するがMarionetteが内部でthis.uiに詰め替えているためこの問題が発生する
+
+        // 対応案1
+        // this.uiを別の変数に詰め直す
+        // その際使用するプロパティをデフォルト値をセットしておかないとエラーになる
+        // let uiElement = _.defaults({}, this.ui, { inputName: <any>'', inputAge: <any>0 });
+        // const name = uiElement.inputName.val().trim();
+        // const age = uiElement.inputAge.val().trim();
+
+        // 対応案2
+        // this.ui.[xxx]の形式で呼び出す
+        // この形式だとコンパイルをすり抜けることができる
+        const name = this.ui['inputName'].val().trim();
+        const age = this.ui['inputAge'].val().trim();
+
         this.model.set({ name: name, age: age });
 
         if(this.model.isValid(true)) {
             this.collection.create(this.model, { wait: true });
-            (<any>this.ui.inputs).val('');
+            this.ui['inputs'].val('');
         }
     }
 

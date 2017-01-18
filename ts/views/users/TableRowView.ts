@@ -4,9 +4,6 @@ import * as Marionette from 'backbone.marionette';
 
 export default class TableRowView extends Marionette.ItemView<Backbone.Model> {
     template = '#users-table-row-view';
-    ui = {
-        destroyBtn: '.destroy',
-    };
 
     constructor(options = {}) {
         super(
@@ -16,11 +13,15 @@ export default class TableRowView extends Marionette.ItemView<Backbone.Model> {
         );
     }
 
+    ui() {
+        return {
+            destroyBtn: '.destroy',
+        };
+    }
+
     events() {
         return {
-            // eventsでuiが使えない
-            // 'click @ui.destroyBtn': 'onClickDestroy'
-            'click .destroy': 'onClickDestroy'
+            'click @ui.destroyBtn': 'onClickDestroy'
         };
     }
 
