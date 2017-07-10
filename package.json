@@ -12,7 +12,7 @@
     "bootstrap": "^3.3.7",
     "browserify": "^14.4.0",
     "browserify-shim": "^3.8.14",
-    "eslint": "^4.0.0",
+    "eslint": "^4.2.0",
     "gulp": "^3.9.1",
     "gulp-eslint": "^4.0.0",
     "gulp-webserver": "^0.9.1",
