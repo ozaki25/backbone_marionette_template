@@ -16,7 +16,7 @@ gulp.task('build', () => {
 gulp.task('browserify', () => {
     browserify('./js/app.js', {
         debug:   true,
-        require: ['moment', 'pikaday', 'zeroclipboard', 'numbro']
+        require: ['moment']
     })
     .bundle()
     .pipe(source('bundle.js'))
@@ -54,7 +54,7 @@ gulp.task('server', () => {
 
 gulp.task('lint', () => {
     gulp.src('./js/**/*.js')
-        .pipe(eslint())
+        .pipe(eslint({ fix: true }))
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
 });
