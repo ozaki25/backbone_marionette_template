@@ -21,21 +21,8 @@
     "jquery": "^3.2.1",
     "moment": "^2.18.1",
     "numbro": "^1.11.0",
-    "pikaday": "^1.6.1",
     "run-sequence": "^1.2.2",
     "underscore": "^1.8.3",
-    "vinyl-source-stream": "^1.1.0",
-    "zeroclipboard": "^2.3.0"
-  },
-  "browser": {
-    "jquery": "./node_modules/jquery/dist/jquery.js"
-  },
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
-  },
-  "browserify-shim": {
-    "jquery": "$"
+    "vinyl-source-stream": "^1.1.0"
   }
 }
