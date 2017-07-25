@@ -1,9 +1,10 @@
 var Backbone = require('backbone');
+var template = require('../../templates/user/MainTemplate.jst');
 var MessageView = require('./MessageView');
 
 module.exports = Backbone.Marionette.View.extend({
     className: 'container',
-    template: '#user-main-view',
+    template: template,
     regions: {
         messageRegion: '#message-region',
     },

@@ -1,8 +1,9 @@
 var Backbone = require('backbone');
+var template = require('../../templates/users/TableRowTemplate.jst');
 
 module.exports = Backbone.Marionette.View.extend({
     tagName: 'tr',
-    template: '#users-table-row-view',
+    template: template,
     ui: {
         destroy: '#destroy',
     },

@@ -1,11 +1,12 @@
 var Backbone = require('backbone');
+var template = require('../../templates/users/MainTemplate.jst');
 var User = require('../../models/User');
 var FormView = require('./FormView');
 var TableView = require('./TableView');
 
 module.exports = Backbone.Marionette.View.extend({
     className: 'container',
-    template: '#users-main-view',
+    template: template,
     regions: {
         formRegion: '#users-form-region',
         tableRegion: '#users-table-region',

@@ -1,8 +1,9 @@
 var Backbone = require('backbone');
+var template = require('../../templates/users/FormTemplate.jst');
 
 module.exports = Backbone.Marionette.View.extend({
     className: 'panel panel-default',
-    template: '#users-form-view',
+    template: template,
     ui: {
         name: '#name',
         age: '#age',
