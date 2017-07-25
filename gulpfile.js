@@ -16,7 +16,8 @@ gulp.task('build', () => {
 gulp.task('browserify', () => {
     browserify('./js/app.js', {
         debug:   true,
-        require: ['moment']
+        require: ['moment'],
+        transform: ['jstify'],
     })
     .bundle()
     .pipe(source('bundle.js'))

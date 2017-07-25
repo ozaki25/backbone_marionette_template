@@ -19,6 +19,7 @@
     "gulp-uglify": "^3.0.0",
     "gulp-webserver": "^0.9.1",
     "jquery": "^3.2.1",
+    "jstify": "^0.14.0",
     "moment": "^2.18.1",
     "run-sequence": "^1.2.2",
     "underscore": "^1.8.3",
