@@ -12,9 +12,6 @@ module.exports = Backbone.Marionette.View.extend({
         }
     },
     onRender: function() {
-        this.renderTableBody();
-    },
-    renderTableBody: function() {
-        this.getRegion('tableBodyRegion').show(new TableBodyView({ collection: this.collection }));
+        this.showChildView('tableBodyRegion', new TableBodyView({ collection: this.collection }));
     },
 });

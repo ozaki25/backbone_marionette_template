@@ -4,4 +4,3 @@ module.exports = Backbone.Marionette.View.extend({
     className: 'container',
     template: '#hello-view',
 });
-

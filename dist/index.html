@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
   <head>
     <meta charset="UTF-8">
@@ -38,7 +37,7 @@
 
 
     <script id="hello-view" type="text/template">
-      <h1>Backbone Moarionette Template</h1>
+      <h1>Hello!</h1>
     </script>
 
 
@@ -46,11 +45,11 @@
       <form class="form-inline">
         <div class="form-group">
           <label class="label-control">Name</label>
-          <input type="text" class="form-control name" />
+          <input type="text" id="name" class="form-control">
         </div>
-        <button class="btn btn-default" id="hello">Hello</button>
+        <button id="greet" class="btn btn-default">Click</button>
       </form>
-      <p id="message"></p>
+      <div id="message-region"></div>
     </script>
 
     <script id="user-message-view" type="text/template">
@@ -68,15 +67,15 @@
         <form class="form-inline">
           <div class="form-group">
             <label class="control-label">Name</label>
-            <input type="text" class="name form-control" name="name">
+            <input type="text" id="name" class="form-control" name="name">
             <span class="help-inline text-danger"><span>
           </div>
           <div class="form-group">
             <label class="control-label">Age</label>
-            <input type="text" class="age form-control" name="age">
+            <input type="text" id="age" class="form-control" name="age">
             <span class="help-inline text-danger"><span>
           </div>
-          <button class="btn btn-default create">Submit</button>
+          <button id="create" class="btn btn-default">Submit</button>
         </form>
       </div>
     </script>
@@ -98,7 +97,7 @@
       <td><%- name %></td>
       <td><%- age %></td>
       <td>
-        <a href="#" class="btn btn-link destroy">
+        <a href="#" id="destroy" class="btn btn-link">
           <span class="glyphicon glyphicon-trash"></span>
         </a>
       </td>

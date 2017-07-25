@@ -30,17 +30,17 @@ gulp.task('html', () => {
 });
 
 gulp.task('css', () => {
-    gulp.src('./css/*')
+    gulp.src('./css/**')
         .pipe(gulp.dest('./dist/css/'));
 });
 
 gulp.task('fonts', () => {
-    gulp.src('./fonts/*')
+    gulp.src('./fonts/**')
         .pipe(gulp.dest('./dist/fonts/'));
 });
 
 gulp.task('watch', () => {
-    gulp.watch(['./js/**/*.js', './index.html'], ['build', 'lint']);
+    gulp.watch(['./js/**/*.js', './html/**/*.html'], ['build', 'lint']);
 });
 
 gulp.task('server', () => {

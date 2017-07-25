@@ -4,34 +4,38 @@ require('backbone.marionette');
 require('backbone.validation');
 require('backbone.localstorage');
 var Backbone = require('backbone');
-var HelloRootView = require('./views/hello/RootView');
-var UserRootView = require('./views/user/RootView');
-var UsersRootView = require('./views/users/RootView');
+var RootView = require('./views/RootView');
 
-var appRouter = Backbone.Marionette.AppRouter.extend({
+var Controller = Backbone.Marionette.Object.extend({
+    hello: function() {
+        this.getOption('rootView').showHello();
+    },
+    user: function() {
+        this.getOption('rootView').showUser();
+    },
+    users: function() {
+        this.getOption('rootView').showUsers();
+    },
+});
+
+var Router = Backbone.Marionette.AppRouter.extend({
+    initialize: function(options) {
+        this.controller = new Controller(options);
+    },
     appRoutes: {
         ''     : 'hello',
         'hello': 'hello',
         'user' : 'user',
         'users': 'users',
     },
-    controller: {
-        hello: function() {
-            app.showView(new HelloRootView());
-        },
-        user: function() {
-            app.showView(new UserRootView());
-        },
-        users: function() {
-            app.showView(new UsersRootView());
-        }
-    }
 });
 
 var app = new Backbone.Marionette.Application({
     region: '#root-region',
     onStart: function() {
-        new appRouter();
+        var rootView = new RootView();
+        new Router({ rootView: rootView });
+        this.showView(rootView);
         Backbone.history.start();
     }
 });
