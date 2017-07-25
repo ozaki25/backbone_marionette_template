@@ -1,41 +1,52 @@
 var Backbone = require('backbone');
-var User = require('../../models/User');
+var template = require('../../templates/users/FormTemplate.jst');
 
 module.exports = Backbone.Marionette.View.extend({
     className: 'panel panel-default',
-    template: '#users-form-view',
+    template: template,
     ui: {
-        inputName: 'input.name',
-        inputAge : 'input.age',
-        inputs   : 'input',
-        createBtn: '.create'
+        name: '#name',
+        age: '#age',
+        create: '#create'
     },
-    events: {
-        'click @ui.createBtn': 'onClickCreate'
+    triggers: {
+        'click @ui.create': 'click:create'
     },
-    onClickCreate: function(e) {
-        e.preventDefault();
-        this.model = new User();
+    modelEvents: {
+        sync: 'saved',
+    },
+    onClickCreate: function() {
         this.bindBackboneValidation();
-
-        var name = this.ui.inputName.val().trim();
-        var age = this.ui.inputAge.val().trim();
-        this.model.set({ name: name, age: age });
-
-        if(this.model.isValid(true)) {
-            this.collection.create(this.model, { wait: true });
-            this.ui.inputs.val('');
-        }
+        this.bindForm();
+        this.model.save();
+    },
+    saved: function() {
+        this.triggerMethod('save:user', this.model);
+    },
+    bindForm: function() {
+        this.model.set({
+            name: this.getUI('name').val().trim(),
+            age: this.getUI('age').val().trim(),
+        });
     },
     bindBackboneValidation: function() {
         Backbone.Validation.bind(this, {
             valid: function(view, attr) {
-                view.$('[name=' + attr + ']').closest('.form-group').removeClass('has-error').find('.help-inline').empty();
+                view
+                    .$('[name=' + attr + ']')
+                    .closest('.form-group')
+                    .removeClass('has-error')
+                    .find('.help-inline')
+                    .empty();
             },
             invalid: function(view, attr, error) {
-                view.$('[name=' + attr + ']').closest('.form-group').addClass('has-error').find('.help-inline').text(error);
+                view
+                    .$('[name=' + attr + ']')
+                    .closest('.form-group')
+                    .addClass('has-error')
+                    .find('.help-inline')
+                    .text(error);
             }
         });
-    }
+    },
 });
-

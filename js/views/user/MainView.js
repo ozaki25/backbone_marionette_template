@@ -1,33 +1,30 @@
 var Backbone = require('backbone');
-var User = require('../../models/User');
+var template = require('../../templates/user/MainTemplate.jst');
 var MessageView = require('./MessageView');
 
 module.exports = Backbone.Marionette.View.extend({
     className: 'container',
-    template: '#user-main-view',
+    template: template,
     regions: {
-        messageRegion: {
-            el: '#message',
-            replaceElement: true,
-        }
+        messageRegion: '#message-region',
     },
     ui: {
-        inputName: '.name',
-        helloBtn : '#hello',
+        name: '#name',
+        greet : '#greet',
     },
-    events: {
-        'click @ui.helloBtn': 'onClickHello'
+    triggers: {
+        'click @ui.greet': 'click:greet',
     },
-    onClickHello: function(e) {
-        e.preventDefault();
-        var name = this.ui.inputName.val().trim();
-        if(name) {
-            this.ui.inputName.val('');
-            this.renderMessage(name);
-        }
+    modelEvents: {
+        'change:name': 'renderMessage',
     },
-    renderMessage: function(name) {
-        var user = new User({ name: name });
-        this.getRegion('messageRegion').show(new MessageView({ model: user }));
+    onClickGreet: function() {
+        var name = this.getUI('name').val().trim();
+        if(!name) return;
+        this.getUI('name').val('');
+        this.model.set({ name: name });
+    },
+    renderMessage: function() {
+        this.getRegion('messageRegion').show(new MessageView({ model: this.model }));
     },
 });

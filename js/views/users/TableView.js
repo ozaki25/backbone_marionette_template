@@ -1,10 +1,11 @@
 var Backbone = require('backbone');
+var template = require('../../templates/users/TableTemplate.jst');
 var TableBodyView = require('./TableBodyView');
 
 module.exports = Backbone.Marionette.View.extend({
     tagName: 'table',
     className: 'table table-condensed',
-    template: '#users-table-view',
+    template: template,
     regions: {
         tableBodyRegion: {
             el: 'tbody',
@@ -12,9 +13,6 @@ module.exports = Backbone.Marionette.View.extend({
         }
     },
     onRender: function() {
-        this.renderTableBody();
-    },
-    renderTableBody: function() {
-        this.getRegion('tableBodyRegion').show(new TableBodyView({ collection: this.collection }));
+        this.showChildView('tableBodyRegion', new TableBodyView({ collection: this.collection }));
     },
 });

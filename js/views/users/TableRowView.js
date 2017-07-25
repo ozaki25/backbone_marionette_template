@@ -1,16 +1,16 @@
 var Backbone = require('backbone');
+var template = require('../../templates/users/TableRowTemplate.jst');
 
 module.exports = Backbone.Marionette.View.extend({
     tagName: 'tr',
-    template: '#users-table-row-view',
+    template: template,
     ui: {
-        destroyBtn: '.destroy',
+        destroy: '#destroy',
     },
-    events: {
-        'click @ui.destroyBtn': 'onClickDestroy',
+    triggers: {
+        'click @ui.destroy': 'click:destroy',
     },
-    onClickDestroy: function(e) {
-        e.preventDefault();
-        this.model.destroy({ wait: true });
+    onClickDestroy: function() {
+        this.model.destroy();
     },
 });
