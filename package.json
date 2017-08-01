@@ -1,5 +1,5 @@
 {
-  "name": "workflow_sample",
+  "name": "backbone_marionette_template",
   "version": "1.0.0",
   "description": "",
   "main": "gulpfile.js",
@@ -17,6 +17,7 @@
     "gulp-eslint": "^4.0.0",
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^3.0.0",
+    "gulp-util": "^3.0.8",
     "gulp-webserver": "^0.9.1",
     "jquery": "^3.2.1",
     "jstify": "^0.14.0",

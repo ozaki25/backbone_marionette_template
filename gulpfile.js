@@ -8,6 +8,7 @@ const webserver = require('gulp-webserver');
 const eslint = require('gulp-eslint');
 const streamify = require('gulp-streamify');
 const uglify = require('gulp-uglify');
+const util = require('gulp-util');
 
 gulp.task('build', () => {
     runSequence(['browserify', 'html', 'css', 'fonts']);
@@ -20,9 +21,16 @@ gulp.task('browserify', () => {
         transform: ['jstify'],
     })
     .bundle()
+    .on('error',function(e) {
+        util.log(e);
+        this.emit('end');
+    })
     .pipe(source('bundle.js'))
+    .on('error', util.log)
     .pipe(streamify(uglify()))
-    .pipe(gulp.dest('./dist/js/'));
+    .on('error', util.log)
+    .pipe(gulp.dest('./dist/js/'))
+    .on('error', util.log);
 });
 
 gulp.task('html', () => {
@@ -41,7 +49,7 @@ gulp.task('fonts', () => {
 });
 
 gulp.task('watch', () => {
-    gulp.watch(['./js/**/*.js', './html/**/*.html'], ['build', 'lint']);
+    gulp.watch(['./js/**/*.js', './css/**/*.css', './html/**/*.html'], ['build', 'lint']);
 });
 
 gulp.task('server', () => {
@@ -56,8 +64,7 @@ gulp.task('server', () => {
 gulp.task('lint', () => {
     gulp.src('./js/**/*.js')
         .pipe(eslint({ fix: true }))
-        .pipe(eslint.format())
-        .pipe(eslint.failAfterError());
+        .pipe(eslint.format());
 });
 
 gulp.task('default', ['build', 'watch', 'server', 'lint']);
