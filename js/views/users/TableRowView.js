@@ -1,5 +1,5 @@
 var Backbone = require('backbone');
-var template = require('../../templates/users/TableRowTemplate.jst');
+var template = require('../../templates/users/TableRowTemplate.html');
 
 module.exports = Backbone.Marionette.View.extend({
     tagName: 'tr',

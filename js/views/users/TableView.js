@@ -1,5 +1,5 @@
 var Backbone = require('backbone');
-var template = require('../../templates/users/TableTemplate.jst');
+var template = require('../../templates/users/TableTemplate.html');
 var TableBodyView = require('./TableBodyView');
 
 module.exports = Backbone.Marionette.View.extend({

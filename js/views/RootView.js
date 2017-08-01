@@ -1,5 +1,5 @@
 var Backbone = require('backbone');
-var template = require('../templates/RootTemplate.jst');
+var template = require('../templates/RootTemplate.html');
 
 var UserCollection = require('../collections/Users');
 var UserModel = require('../models/User');
@@ -13,7 +13,7 @@ module.exports = Backbone.Marionette.View.extend({
     template: template,
     regions: {
         headerRegion: '#header-region',
-        mainRegion  : '#main-region',
+        mainRegion: '#main-region',
     },
     onRender: function() {
         this.showChildView('headerRegion', new HeaderView());

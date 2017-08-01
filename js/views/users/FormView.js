@@ -1,5 +1,5 @@
 var Backbone = require('backbone');
-var template = require('../../templates/users/FormTemplate.jst');
+var template = require('../../templates/users/FormTemplate.html');
 
 module.exports = Backbone.Marionette.View.extend({
     className: 'panel panel-default',
@@ -14,6 +14,7 @@ module.exports = Backbone.Marionette.View.extend({
     },
     modelEvents: {
         sync: 'saved',
+        clear: 'render',
     },
     onClickCreate: function() {
         this.bindBackboneValidation();
@@ -21,7 +22,9 @@ module.exports = Backbone.Marionette.View.extend({
         this.model.save();
     },
     saved: function() {
-        this.triggerMethod('save:user', this.model);
+        this.triggerMethod('save:user', this.model.clone());
+        this.model.clear();
+        this.model.trigger('clear');
     },
     bindForm: function() {
         this.model.set({

@@ -1,5 +1,5 @@
 var Backbone = require('backbone');
-var template = require('../../templates/user/MainTemplate.jst');
+var template = require('../../templates/user/MainTemplate.html');
 var MessageView = require('./MessageView');
 
 module.exports = Backbone.Marionette.View.extend({
@@ -10,7 +10,7 @@ module.exports = Backbone.Marionette.View.extend({
     },
     ui: {
         name: '#name',
-        greet : '#greet',
+        greet: '#greet',
     },
     triggers: {
         'click @ui.greet': 'click:greet',
