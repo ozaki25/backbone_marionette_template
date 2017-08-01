@@ -18,5 +18,4 @@ module.exports = Backbone.Model.extend({
             msg: '0〜100を入力して下さい。',
         }],
     },
-    localStorage: new Backbone.LocalStorage('BackboneMarionetteTemplate.Users')
 });

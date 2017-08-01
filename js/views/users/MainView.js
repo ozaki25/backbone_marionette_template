@@ -12,7 +12,7 @@ module.exports = Backbone.Marionette.View.extend({
         tableRegion: '#users-table-region',
     },
     onRender: function() {
-        this.showChildView('formRegion', new FormView({ model: new User() }));
+        this.showChildView('formRegion', new FormView({ model: new User({}, { collection: this.collection }) }));
         this.showChildView('tableRegion', new TableView({ collection: this.collection }));
     },
     onChildviewSaveUser: function(model) {
