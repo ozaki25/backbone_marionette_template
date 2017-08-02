@@ -1,9 +1,6 @@
 var Backbone = require('backbone');
 var template = require('../templates/RootTemplate.html');
-
-var UserCollection = require('../collections/Users');
 var UserModel = require('../models/User');
-
 var HeaderView = require('./HeaderView');
 var HelloView = require('./hello/HelloView');
 var UserMainView = require('./user/MainView');
@@ -24,9 +21,7 @@ module.exports = Backbone.Marionette.View.extend({
     showUser: function() {
         this.showChildView('mainRegion', new UserMainView({ model: new UserModel() }));
     },
-    showUsers: function() {
-        var users = new UserCollection();
-        users.fetch();
+    showUsers: function(users) {
         this.showChildView('mainRegion', new UsersMainView({ collection: users }));
     },
 });
