@@ -2,23 +2,24 @@ import Backbone from 'backbone';
 import RootView from './views/RootView';
 import UserCollection from './collections/Users';
 
-var Controller = Backbone.Marionette.Object.extend({
-    initialize: function (options) {
+class Controller extends Backbone.Marionette.Object {
+    constructor (options) {
+        super(options);
         this.rootView = new RootView();
         options.app.showView(this.rootView);
-    },
-    hello: function () {
+    }
+    hello () {
         this.rootView.showHello();
-    },
-    user: function () {
+    }
+    user () {
         this.rootView.showUser();
-    },
-    users: function () {
+    }
+    users () {
         var users = new UserCollection();
         this.rootView.showUsers(users);
         users.fetch();
-    },
-});
+    }
+}
 
 export default Backbone.Marionette.AppRouter.extend({
     initialize: function (options) {
