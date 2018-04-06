@@ -17,17 +17,17 @@ export default Backbone.Marionette.View.extend({
         sync: 'saved',
         clear: 'render',
     },
-    onClickCreate: function() {
+    onClickCreate: function () {
         this.bindBackboneValidation();
         this.bindForm();
         this.model.save();
     },
-    saved: function() {
+    saved: function () {
         this.triggerMethod('save:user', this.model.clone());
         this.model.clear();
         this.model.trigger('clear');
     },
-    bindForm: function() {
+    bindForm: function () {
         this.model.set({
             name: this.getUI('name')
                 .val()
@@ -37,9 +37,9 @@ export default Backbone.Marionette.View.extend({
                 .trim(),
         });
     },
-    bindBackboneValidation: function() {
+    bindBackboneValidation: function () {
         Backbone.Validation.bind(this, {
-            valid: function(view, attr) {
+            valid: function (view, attr) {
                 view
                     .$('[name=' + attr + ']')
                     .closest('.form-group')
@@ -47,7 +47,7 @@ export default Backbone.Marionette.View.extend({
                     .find('.help-inline')
                     .empty();
             },
-            invalid: function(view, attr, error) {
+            invalid: function (view, attr, error) {
                 view
                     .$('[name=' + attr + ']')
                     .closest('.form-group')

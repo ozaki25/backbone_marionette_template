@@ -12,7 +12,7 @@ export default Backbone.Marionette.View.extend({
             replaceElement: true,
         },
     },
-    onRender: function() {
+    onRender: function () {
         this.showChildView('tableBodyRegion', new TableBodyView({ collection: this.collection }));
     },
 });

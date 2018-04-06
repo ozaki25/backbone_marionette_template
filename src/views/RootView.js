@@ -12,16 +12,16 @@ export default Backbone.Marionette.View.extend({
         headerRegion: '#header-region',
         mainRegion: '#main-region',
     },
-    onRender: function() {
+    onRender: function () {
         this.showChildView('headerRegion', new HeaderView());
     },
-    showHello: function() {
+    showHello: function () {
         this.showChildView('mainRegion', new HelloView());
     },
-    showUser: function() {
+    showUser: function () {
         this.showChildView('mainRegion', new UserMainView({ model: new UserModel() }));
     },
-    showUsers: function(users) {
+    showUsers: function (users) {
         this.showChildView('mainRegion', new UsersMainView({ collection: users }));
     },
 });

@@ -10,7 +10,7 @@ export default Backbone.Marionette.View.extend({
     triggers: {
         'click @ui.destroy': 'click:destroy',
     },
-    onClickDestroy: function() {
+    onClickDestroy: function () {
         this.model.destroy();
     },
 });

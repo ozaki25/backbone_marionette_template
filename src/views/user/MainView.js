@@ -18,7 +18,7 @@ export default Backbone.Marionette.View.extend({
     modelEvents: {
         'change:name': 'renderMessage',
     },
-    onClickGreet: function() {
+    onClickGreet: function () {
         var name = this.getUI('name')
             .val()
             .trim();
@@ -26,7 +26,7 @@ export default Backbone.Marionette.View.extend({
         this.getUI('name').val('');
         this.model.set({ name: name });
     },
-    renderMessage: function() {
+    renderMessage: function () {
         this.getRegion('messageRegion').show(new MessageView({ model: this.model }));
     },
 });

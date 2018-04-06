@@ -3,17 +3,17 @@ import RootView from './views/RootView';
 import UserCollection from './collections/Users';
 
 var Controller = Backbone.Marionette.Object.extend({
-    initialize: function(options) {
+    initialize: function (options) {
         this.rootView = new RootView();
         options.app.showView(this.rootView);
     },
-    hello: function() {
+    hello: function () {
         this.rootView.showHello();
     },
-    user: function() {
+    user: function () {
         this.rootView.showUser();
     },
-    users: function() {
+    users: function () {
         var users = new UserCollection();
         this.rootView.showUsers(users);
         users.fetch();
@@ -21,7 +21,7 @@ var Controller = Backbone.Marionette.Object.extend({
 });
 
 export default Backbone.Marionette.AppRouter.extend({
-    initialize: function(options) {
+    initialize: function (options) {
         this.controller = new Controller(options);
     },
     appRoutes: {
